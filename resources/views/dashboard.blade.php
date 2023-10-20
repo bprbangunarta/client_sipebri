@@ -158,7 +158,7 @@
 
 
     <!-- App Bottom Menu -->
-    {{-- <div class="appBottomMenu">
+    <div class="appBottomMenu">
         <a href="index.html" class="item active">
             <div class="col">
                 <ion-icon name="home-outline"></ion-icon>
@@ -179,7 +179,7 @@
                 <strong>Profile</strong>
             </div>
         </a>
-    </div> --}}
+    </div>
     <!-- * App Bottom Menu -->
 
     <!-- App Sidebar -->
