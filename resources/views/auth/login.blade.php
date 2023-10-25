@@ -8,11 +8,9 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#000000">
-    <title>Mobilekit Mobile UI Kit</title>
-    <meta name="description" content="Mobilekit HTML Mobile UI Kit">
-    <meta name="keywords" content="bootstrap 4, mobile template, cordova, phonegap, mobile, html" />
+    <title>Login | SIPEBRI</title>
+    <meta name="description" content="Sistem Informasi Pembertian Kredit adalah sebuah sistem informasi untuk mengelola dan memantau proses pemberian kredit kepada pelanggan atau nasabah.">
     <link rel="icon" type="image/png" href="assets/img/favicon.png" sizes="32x32">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/icon/192x192.png">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="manifest" href="__manifest.json">
 </head>
@@ -76,21 +74,13 @@
     </div>
     <!-- * App Capsule -->
 
-
-
-    <!-- ///////////// Js Files ////////////////////  -->
     <!-- Jquery -->
     <script src="assets/js/lib/jquery-3.4.1.min.js"></script>
-    <!-- Bootstrap-->
     <script src="assets/js/lib/popper.min.js"></script>
     <script src="assets/js/lib/bootstrap.min.js"></script>
-    <!-- Ionicons -->
     <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
-    <!-- Owl Carousel -->
     <script src="assets/js/plugins/owl-carousel/owl.carousel.min.js"></script>
-    <!-- jQuery Circle Progress -->
     <script src="assets/js/plugins/jquery-circle-progress/circle-progress.min.js"></script>
-    <!-- Base Js File -->
     <script src="assets/js/base.js"></script>
 
 

@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SurveyController;
+use App\Http\Controllers\TrackingController;
+use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +29,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/survey', [SurveyController::class, 'index'])->name('survey.index');
+    Route::get('/survey/edit', [SurveyController::class, 'edit'])->name('survey.edit');
+
+    Route::get('/tracking', [TrackingController::class, 'index'])->name('tracking.index');
+    Route::get('/tracking/detail', [TrackingController::class, 'detail'])->name('tracking.detail');
+
+    Route::get('/setting', [SettingController::class, 'index'])->name('setting.detail');
 });
 
 require __DIR__.'/auth.php';
