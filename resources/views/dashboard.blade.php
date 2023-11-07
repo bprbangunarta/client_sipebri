@@ -51,13 +51,13 @@
             <div class="col-6">
                 <div class="stat-box">
                     <div class="title">Analisa</div>
-                    <div class="value text-primary">95 USER</div>
+                    <div class="value text-primary">{{ $survei }} USER</div>
                 </div>
             </div>
             <div class="col-6">
                 <div class="stat-box">
                     <div class="title">Disetujui</div>
-                    <div class="value text-success">45 USER</div>
+                    <div class="value text-success">{{ $disetujui }} USER</div>
                 </div>
             </div>
         </div>
@@ -65,13 +65,13 @@
             <div class="col-6">
                 <div class="stat-box">
                     <div class="title">Ditolak</div>
-                    <div class="value text-danger">25 USER</div>
+                    <div class="value text-danger">{{ $ditolak }} USER</div>
                 </div>
             </div>
             <div class="col-6">
                 <div class="stat-box">
                     <div class="title">Dibatalkan</div>
-                    <div class="value" style="color:grey;">99 USER</div>
+                    <div class="value" style="color:grey;">{{ $dibatalkan }} USER</div>
                 </div>
             </div>
         </div>
@@ -85,35 +85,32 @@
             <a href="app-transactions.html" class="link">View All</a>
         </div>
         <div class="transactions">
-            <a href="app-transaction-detail.html" class="item">
+            @forelse ($data as $item)
+            <a href="#" class="item">
                 <div class="detail">
-                    <img src="theme/img/sample/avatar/avatar4.jpg" alt="img" class="image-block imaged w48">
+                    <img src="{{ asset('theme/img/sample/avatar/avatar4.jpg') }}" alt="img" class="image-block imaged w48">
                     <div>
-                        <strong>RIANA HEINAWATI RIYANTO</strong>
-                        <p>Rp. 45.000.000</p>
+                        <strong>{{ $item->nama }}</strong>
+                        @php
+                            $item->plafon = number_format($item->plafon, 0, ',', '.');
+                        @endphp
+                        <p>{{ $item->plafon }}</p>
                     </div>
                 </div>
             </a>
 
-            <a href="app-transaction-detail.html" class="item">
+            @empty
+            <a href="#" class="item">
                 <div class="detail">
-                    <img src="theme/img/sample/brand/2.jpg" alt="img" class="image-block imaged w48">
+                    <img src="theme/img/sample/avatar/avatar4.jpg" alt="img" class="image-block imaged w48">
                     <div>
-                        <strong>DEDEN AHMAD SETIAWAN</strong>
-                        <p>Rp. 10.000.000</p>
+                        <strong>TIDAK ADA REALISASI</strong>
+                        <p>Rp. 0</p>
                     </div>
                 </div>
             </a>
-            
-            <a href="app-transaction-detail.html" class="item">
-                <div class="detail">
-                    <img src="theme/img/sample/brand/2.jpg" alt="img" class="image-block imaged w48">
-                    <div>
-                        <strong>SITI NURLIA OKTAVERA</strong>
-                        <p>Rp. 55.000.000</p>
-                    </div>
-                </div>
-            </a>
+            @endforelse
+
         </div>
     </div>
     <!-- * Transactions -->
