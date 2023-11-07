@@ -20,9 +20,9 @@
 
     <!-- Search Component -->
     <div id="search" class="appHeader">
-        <form class="search-form">
+        <form class="search-form" {{ route('survey.index') }}" method="GET">
             <div class="form-group searchbox">
-                <input type="text" class="form-control" placeholder="Search...">
+                <input type="text" class="form-control" name="name" id="name" value="{{ request('name') }}" placeholder="Search...">
                 <i class="input-icon icon ion-ios-search"></i>
                 <a href="javascript:;" class="ms-1 close toggle-searchbox"><i class="icon ion-ios-close-circle"></i></a>
             </div>
@@ -52,10 +52,17 @@
                     </a>
                 </li>
             @empty
-                <div style="margin-top: 5px;">
-                    <span class="fw-bold">TIDAK ADA DATA</span>
-                    <textarea class="form-control text-uppercase" rows="3" name="catatan" id="catatan" required></textarea>
-                </div>
+                <li>
+                    <a href="#" class="item">
+                        <div class="icon-box bg-primary">
+                            <ion-icon name="person-circle-outline" role="img" class="md hydrated"></ion-icon>
+                        </div>
+
+                        <div class="in">
+                            <div>TIDAK ADA DATA</div>
+                        </div>
+                    </a>
+                </li>
             @endforelse
         </ul>
     </div>

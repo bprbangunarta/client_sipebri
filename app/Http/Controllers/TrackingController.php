@@ -50,7 +50,7 @@ class TrackingController extends Controller
             })
             ->orderBy('data_pengajuan.created_at', 'asc');
         //
-        $pengajuan = $query->paginate(7);
+        $pengajuan = $query->paginate(100);
 
         foreach ($pengajuan as $item) {
             $item->kd_nasabah = Crypt::encrypt($item->kd_nasabah);
