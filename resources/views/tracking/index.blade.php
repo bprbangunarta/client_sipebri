@@ -56,7 +56,6 @@
 
                         <div class="in">
                             <div>TIDAK ADA DATA</div>
-                            <span class="badge badge-danger badge-empty"></span>
                         </div>
                     </a>
                 </li>

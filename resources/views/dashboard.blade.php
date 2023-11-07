@@ -51,7 +51,7 @@
             <div class="col-6">
                 <div class="stat-box">
                     <div class="title">Analisa</div>
-                    <div class="value text-primary">{{ $survei }} USER</div>
+                    <div class="value text-primary">{{ $pengajuan }} USER</div>
                 </div>
             </div>
             <div class="col-6">

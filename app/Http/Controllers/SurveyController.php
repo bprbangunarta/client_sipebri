@@ -24,7 +24,7 @@ class SurveyController extends Controller
             ->leftJoin('users', 'data_survei.surveyor_kode', '=', 'users.code_user')
             ->where(function ($query) use ($user) {
                 $query->where('data_survei.surveyor_kode', '=', $user)
-                    ->where('data_pengajuan.tracking', '=', 'Proses Survei')
+                    ->Where('data_pengajuan.tracking', '=', 'Proses Survei')
                     ->orWhere('data_pengajuan.tracking', '=', 'Proses Analisa');
             })
             ->select(

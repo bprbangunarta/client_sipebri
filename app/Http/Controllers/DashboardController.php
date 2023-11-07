@@ -5,16 +5,32 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        $pengajuan = DB::table('data_pengajuan')->count();
-        $disetujui = DB::table('data_pengajuan')->where('status', 'Disetujui')->count();
-        $penolakan = DB::table('data_pengajuan')->where('status', 'Ditolak')->count();
-        $pembatalan = DB::table('data_pengajuan')->where('status', 'Dibatalkan')->count();
-        $survei = DB::table('data_survei')->where('surveyor_kode', '!=', null)->count();
+        $user = Auth::user()->code_user;
+        $pengajuan = DB::table('data_survei')->where('surveyor_kode', '=', $user)->count();
+
+        $disetujui = DB::table('data_survei')
+            ->join('data_pengajuan', 'data_pengajuan.kode_pengajuan', '=', 'data_survei.pengajuan_kode')
+            ->where('data_pengajuan.status', 'Disetujui')
+            ->where('data_survei.surveyor_kode', '=', $user)
+            ->count();
+        
+        $penolakan = DB::table('data_survei')
+            ->join('data_pengajuan', 'data_pengajuan.kode_pengajuan', '=', 'data_survei.pengajuan_kode')
+            ->where('data_pengajuan.status', 'Ditolak')
+            ->where('data_survei.surveyor_kode', '=', $user)
+            ->count();
+
+        $pembatalan = DB::table('data_survei')
+            ->join('data_pengajuan', 'data_pengajuan.kode_pengajuan', '=', 'data_survei.pengajuan_kode')
+            ->where('data_pengajuan.status', 'Dibatalkan')
+            ->where('data_survei.surveyor_kode', '=', $user)
+            ->count();
 
         $query = DB::table('data_pengajuan')
             ->leftJoin('data_nasabah', 'data_pengajuan.nasabah_kode', '=', 'data_nasabah.kode_nasabah')
@@ -58,7 +74,6 @@ class DashboardController extends Controller
 
         return view('dashboard', [
             'pengajuan' => $pengajuan,
-            'survei' => $survei,
             'disetujui' => $disetujui,
             'ditolak' => $penolakan,
             'dibatalkan' => $pembatalan,
