@@ -46,6 +46,7 @@ class SurveyController extends Controller
                 'data_survei.tgl_survei',
                 'data_survei.tgl_jadul_1',
                 'data_survei.tgl_jadul_2',
+                'data_survei.foto',
                 'users.name'
             );
         //

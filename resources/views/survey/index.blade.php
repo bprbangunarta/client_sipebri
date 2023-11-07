@@ -39,9 +39,15 @@
                         <div class="icon-box bg-primary">
                             <ion-icon name="person-circle-outline" role="img" class="md hydrated"></ion-icon>
                         </div>
+
                         <div class="in">
                             <div>{{ $item->nama_nasabah }}</div>
-                            <span class="badge badge-success badge-empty"></span>
+                            @if ($item->foto == null)
+                                <span class="badge badge-danger badge-empty"></span>
+                            @else
+                                <span class="badge badge-success badge-empty"></span>
+                            @endif
+
                         </div>
                     </a>
                 </li>
