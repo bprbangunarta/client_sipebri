@@ -19,16 +19,12 @@ class SurveyController extends Controller
             ->Join('data_nasabah', 'data_pengajuan.nasabah_kode', '=', 'data_nasabah.kode_nasabah')
             ->Join('data_survei', 'data_pengajuan.kode_pengajuan', '=', 'data_survei.pengajuan_kode')
             ->Join('users', 'data_survei.surveyor_kode', '=', 'users.code_user')
-            // ->where(function ($query) use ($user) {
-            //     $query->where('data_survei.surveyor_kode', $user)
-            //         ->where('data_pengajuan.tracking', 'Proses Survei')
-            //         ->where('data_pengajuan.tracking', 'Proses Analisa');
-            // })
             ->where(function ($query) use ($user) {
                 $query->where('data_survei.surveyor_kode', $user)
                     ->where(function ($subquery) {
                         $subquery->where('data_pengajuan.tracking', 'Proses Survei')
                             ->orWhere('data_pengajuan.tracking', 'Proses Analisa')
+                            ->orWhere('data_pengajuan.tracking', 'Persetujuan Komite')
                             ->orWhere('data_pengajuan.tracking', 'Naik Kasi')
                             ->orWhere('data_pengajuan.tracking', 'Naik Komite I')
                             ->orWhere('data_pengajuan.tracking', 'Naik Komite II');
