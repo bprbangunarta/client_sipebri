@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/survey', [SurveyController::class, 'index'])->name('survey.index');
     Route::get('/survey/edit', [SurveyController::class, 'edit'])->name('survey.edit');
+    Route::post('/survey/simpan', [SurveyController::class, 'simpan'])->name('survey.simpan');
 
     Route::get('/tracking', [TrackingController::class, 'index'])->name('tracking.index');
     Route::get('/tracking/detail', [TrackingController::class, 'detail'])->name('tracking.detail');
@@ -39,4 +40,4 @@ Route::middleware('auth')->group(function () {
     Route::get('/setting', [SettingController::class, 'index'])->name('setting.detail');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
