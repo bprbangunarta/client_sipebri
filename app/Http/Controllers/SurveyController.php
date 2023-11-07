@@ -12,8 +12,10 @@ use Illuminate\Contracts\Encryption\DecryptException;
 
 class SurveyController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $name = request('name');
+
         $user = Auth::user()->code_user;
         $cek = DB::table('data_pengajuan')
             ->leftJoin('data_nasabah', 'data_pengajuan.nasabah_kode', '=', 'data_nasabah.kode_nasabah')
@@ -44,11 +46,17 @@ class SurveyController extends Controller
                 'data_kantor.nama_kantor',
                 'data_survei.surveyor_kode',
                 'data_survei.tgl_survei',
+                'data_survei.foto',
                 'data_survei.tgl_jadul_1',
                 'data_survei.tgl_jadul_2',
-                'data_survei.foto',
                 'users.name'
-            );
+            )
+            ->where(function ($query) use ($name) {
+                $query->where('data_nasabah.nama_nasabah', 'like', '%' . $name . '%')
+                    ->orWhere('data_survei.kantor_kode', 'like', '%' . $name . '%')
+                    ->orWhere('data_kantor.nama_kantor', 'like', '%' . $name . '%');
+            })
+            ->orderBy('data_pengajuan.created_at', 'asc');
         //
         $c = $cek->get();
         $count = count($c);
