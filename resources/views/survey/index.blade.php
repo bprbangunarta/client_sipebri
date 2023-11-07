@@ -51,28 +51,6 @@
                     <textarea class="form-control text-uppercase" rows="3" name="catatan" id="catatan" required></textarea>
                 </div>
             @endforelse
-            {{-- <li>
-                <a href="/survey/edit" class="item">
-                    <div class="icon-box bg-primary">
-                        <ion-icon name="person-circle-outline" role="img" class="md hydrated"></ion-icon>
-                    </div>
-                    <div class="in">
-                        <div>RISMA SRI WINDIANI PUTRI</div>
-                        <span class="badge badge-success badge-empty"></span>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="/survey/edit" class="item">
-                    <div class="icon-box bg-primary">
-                        <ion-icon name="person-circle-outline" role="img" class="md hydrated"></ion-icon>
-                    </div>
-                    <div class="in">
-                        <div>IRNA DELIA NOVIANTI</div>
-                        <span class="badge badge-danger badge-empty"></span>
-                    </div>
-                </a>
-            </li> --}}
         </ul>
     </div>
     <!-- * App Capsule -->

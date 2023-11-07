@@ -41,7 +41,7 @@
                         <div class="form-group basic">
                             <div class="input-wrapper">
                                 <input type="text" class="form-control" name="no_identitas" style="margin-top:-15px;"
-                                    value="{{ $data->no_identitas }}" readonly>
+                                    value="{{ $data->no_identitas }}" hidden>
                                 <input type="text" class="form-control" name="nama" style="margin-top:-15px;"
                                     value="{{ $data->nama_nasabah }}" readonly>
                                 <i class="clear-input"><ion-icon name="close-circle"></ion-icon></i>
@@ -57,8 +57,13 @@
 
                         <div class="form-group basic mt-1">
                             <div class="input-wrapper">
+                                {{-- <input type="text" class="form-control" style="margin-top:-25px;" name="location"
+                                    id="loc" value="{{ $data->latitude . ',' . $data->longitude }} ?? null" readonly> --}}
                                 <input type="text" class="form-control" style="margin-top:-25px;" name="location"
-                                    id="loc" value="" readonly>
+                                    id="loc"
+                                    value="{{ $data->latitude && $data->longitude ? $data->latitude . ',' . $data->longitude : 'null' }}"
+                                    readonly>
+
                                 <i class="clear-input"><ion-icon name="close-circle"></ion-icon></i>
                             </div>
                         </div>
@@ -73,8 +78,12 @@
                                 </h2>
                                 <div id="foto_survey" class="accordion-collapse collapse mb-1"
                                     data-bs-parent="#survey_foto">
-                                    <img src="{{ asset('theme/img/sample/photo/3.jpg') }}" alt="image"
-                                        class="imaged img-fluid">
+
+                                    {{-- <img src="{{ asset('storage/image/foto_survei/' . $data->foto) }} ? null" alt="image"
+                                        class="imaged img-fluid"> --}}
+                                    <img src="{{ $data->foto ? asset('storage/image/foto_survei/' . $data->foto) : 'null' }}"
+                                        alt="image" class="imaged img-fluid">
+
                                 </div>
                             </div>
                         </div>

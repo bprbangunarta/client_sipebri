@@ -26,4 +26,17 @@ class Midle extends Model
         $cek->kd_pengajuan = Crypt::encrypt($cek->kode_pengajuan);
         return $cek;
     }
+
+    public static function get_tracking($data)
+    {
+        $cek = DB::table('data_pengajuan')
+            ->join('data_tracking', 'data_pengajuan.kode_pengajuan', '=', 'data_tracking.pengajuan_kode')
+            ->where('pengajuan_kode', $data)
+            ->select(
+                'data_pengajuan.*',
+                'data_tracking.*',
+            )->get();
+        //
+        return $cek;
+    }
 }
