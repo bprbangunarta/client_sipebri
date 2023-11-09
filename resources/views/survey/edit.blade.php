@@ -22,7 +22,8 @@
     <div id="search" class="appHeader">
         <form class="search-form" action="{{ route('survey.index') }}" method="GET">
             <div class="form-group searchbox">
-                <input type="text" class="form-control" name="name" id="name" value="{{ request('name') }}" placeholder="Search...">
+                <input type="text" class="form-control" name="name" id="name" value="{{ request('name') }}"
+                    placeholder="Search...">
                 <i class="input-icon icon ion-ios-search"></i>
                 <a href="javascript:;" class="ms-1 close toggle-searchbox"><i class="icon ion-ios-close-circle"></i></a>
             </div>
@@ -89,14 +90,15 @@
                         <div class="custom-file-upload mt-1" id="fileUpload1">
                             <input type="text" name="foto_survei" value="" hidden>
                             <input type="text" name="oldphoto" value="" hidden>
-                            <input type="file" id="fileuploadInput" name="foto" accept=".png, .jpg, .jpeg" required>
+                            <input type="file" id="fileuploadInput" name="foto" accept=".png, .jpg, .jpeg" required
+                                capture="environment>
                             <label for="fileuploadInput">
-                                <span>
-                                    <strong>
-                                        <ion-icon name="arrow-up-circle-outline"></ion-icon>
-                                        <i>Upload a Photo</i>
-                                    </strong>
-                                </span>
+                            <span>
+                                <strong>
+                                    <ion-icon name="arrow-up-circle-outline"></ion-icon>
+                                    <i>Upload a Photo</i>
+                                </strong>
+                            </span>
                             </label>
                         </div>
 
