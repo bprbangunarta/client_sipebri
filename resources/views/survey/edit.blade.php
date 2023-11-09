@@ -57,8 +57,6 @@
 
                         <div class="form-group basic mt-1">
                             <div class="input-wrapper">
-                                {{-- <input type="text" class="form-control" style="margin-top:-25px;" name="location"
-                                    id="loc" value="{{ $data->latitude . ',' . $data->longitude }} ?? null" readonly> --}}
                                 <input type="text" class="form-control" style="margin-top:-25px;" name="location"
                                     id="loc"
                                     value="{{ $data->latitude && $data->longitude ? $data->latitude . ',' . $data->longitude : 'null' }}"
