@@ -24,6 +24,7 @@ class SurveyController extends Controller
                     ->where(function ($subquery) {
                         $subquery->where('data_pengajuan.tracking', 'Proses Survei')
                             ->orWhere('data_pengajuan.tracking', 'Proses Analisa')
+                            ->orWhere('data_pengajuan.tracking', 'Persetujuan Komite')
                             ->orWhere('data_pengajuan.tracking', 'Naik Kasi')
                             ->orWhere('data_pengajuan.tracking', 'Naik Komite I')
                             ->orWhere('data_pengajuan.tracking', 'Naik Komite II');
