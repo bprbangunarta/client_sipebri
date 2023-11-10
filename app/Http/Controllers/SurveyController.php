@@ -109,6 +109,7 @@ class SurveyController extends Controller
             $cek['updated_at'] = now();
             $dt['proses_survey'] = now();
             $datap['tracking'] = 'Proses Analisa';
+
             DB::transaction(function () use ($enc, $cek, $datap, $dt) {
                 DB::table('data_survei')->where('pengajuan_kode', $enc)->update($cek);
                 DB::table('data_pengajuan')->where('kode_pengajuan', $enc)->update($datap);
