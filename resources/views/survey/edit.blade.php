@@ -90,8 +90,7 @@
                         <div class="custom-file-upload mt-1" id="fileUpload1">
                             <input type="text" name="foto_survei" value="" hidden>
                             <input type="text" name="oldphoto" value="" hidden>
-                            <input type="file" id="fileuploadInput" name="foto" accept=".png, .jpg, .jpeg" required
-                                capture="environment">
+                            <input type="file" id="fileuploadInput" name="foto" accept=".png, .jpg, .jpeg" required>
                             <label for="fileuploadInput">
                                 <span>
                                     <strong>
