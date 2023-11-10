@@ -60,7 +60,7 @@
                             <div class="input-wrapper">
                                 <input type="text" class="form-control" style="margin-top:-25px;" name="location"
                                     id="loc"
-                                    value="{{ $data->latitude && $data->longitude ? $data->latitude . ',' . $data->longitude : 'null' }}"
+                                    value="{{ $data->latitude && $data->longitude ? $data->latitude . ',' . $data->longitude : 'Tidak ada Lokasi' }}"
                                     readonly>
 
                                 <i class="clear-input"><ion-icon name="close-circle"></ion-icon></i>
@@ -91,14 +91,14 @@
                             <input type="text" name="foto_survei" value="" hidden>
                             <input type="text" name="oldphoto" value="" hidden>
                             <input type="file" id="fileuploadInput" name="foto" accept=".png, .jpg, .jpeg" required
-                                capture="environment>
+                                capture="environment">
                             <label for="fileuploadInput">
-                            <span>
-                                <strong>
-                                    <ion-icon name="arrow-up-circle-outline"></ion-icon>
-                                    <i>Upload a Photo</i>
-                                </strong>
-                            </span>
+                                <span>
+                                    <strong>
+                                        <ion-icon name="arrow-up-circle-outline"></ion-icon>
+                                        <i>Upload a Photo</i>
+                                    </strong>
+                                </span>
                             </label>
                         </div>
 
@@ -114,4 +114,12 @@
 @push('myscript')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('assets/js/myscript/get_loc.js') }}"></script>
+    {{-- <script>
+        document.getElementById('fileuploadInput').addEventListener('click', function(event) {
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                // Perangkat mobile terdeteksi, atur input untuk hanya menerima gambar dari penyimpanan perangkat
+                this.setAttribute('capture', 'environment');
+            }
+        });
+    </script> --}}
 @endpush
