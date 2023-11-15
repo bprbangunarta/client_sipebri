@@ -14,13 +14,10 @@ class SurveyController extends Controller
 {
     public function index()
     {
-        $name = request('name');
-
         $user = Auth::user()->code_user;
         $cek = DB::table('data_pengajuan')
             ->Join('data_nasabah', 'data_pengajuan.nasabah_kode', '=', 'data_nasabah.kode_nasabah')
             ->Join('data_survei', 'data_pengajuan.kode_pengajuan', '=', 'data_survei.pengajuan_kode')
-            ->leftJoin('data_kantor', 'data_kantor.kode_kantor', '=', 'data_survei.kantor_kode')
             ->Join('users', 'data_survei.surveyor_kode', '=', 'users.code_user')
             ->where(function ($query) use ($user) {
                 $query->where('data_survei.surveyor_kode', $user)
@@ -53,13 +50,8 @@ class SurveyController extends Controller
                 'data_survei.tgl_jadul_1',
                 'data_survei.tgl_jadul_2',
                 'data_survei.foto',
-                'users.username as surveyor'
-            )
-            ->where(function ($query) use ($name) {
-                $query->where('data_nasabah.nama_nasabah', 'like', '%' . $name . '%')
-                    ->orWhere('data_survei.kantor_kode', 'like', '%' . $name . '%')
-                    ->orWhere('data_kantor.nama_kantor', 'like', '%' . $name . '%');
-            });
+                'users.name'
+            );
         //
         $c = $cek->get();
         $count = count($c);

@@ -22,7 +22,8 @@
     <div id="search" class="appHeader">
         <form class="search-form" action="{{ route('survey.index') }}" method="GET">
             <div class="form-group searchbox">
-                <input type="text" class="form-control" name="name" id="name" value="{{ request('name') }}" placeholder="Search...">
+                <input type="text" class="form-control" name="name" id="name" value="{{ request('name') }}"
+                    placeholder="Search...">
                 <i class="input-icon">
                     <ion-icon name="search-outline"></ion-icon>
                 </i>
@@ -44,8 +45,10 @@
                     @csrf
                     <div class="form-group boxed">
                         <div class="input-wrapper">
-                            <input type="text" class="form-control" name="no_identitas" value="{{ $data->no_identitas }}" hidden>
-                            <input type="text" class="form-control" name="nama" value="{{ $data->nama_nasabah }}" readonly>
+                            <input type="text" class="form-control" name="no_identitas" value="{{ $data->no_identitas }}"
+                                hidden>
+                            <input type="text" class="form-control" name="nama" value="{{ $data->nama_nasabah }}"
+                                readonly>
                         </div>
                     </div>
 
@@ -57,7 +60,9 @@
 
                     <div class="form-group boxed" style="margin-top: -10px;">
                         <div class="input-wrapper">
-                            <input type="text" class="form-control" name="location" id="loc" value="{{ $data->latitude && $data->longitude ? $data->latitude . ',' . $data->longitude : 'Tidak ada Lokasi' }}" readonly>
+                            <input type="text" class="form-control" name="location" id="loc"
+                                value="{{ $data->latitude && $data->longitude ? $data->latitude . ',' . $data->longitude : 'Tidak ada Lokasi' }}"
+                                readonly>
                         </div>
                     </div>
 
@@ -77,14 +82,15 @@
                     <div class="accordion mt-1" id="accordionExample3">
                         <div class="item">
                             <div class="accordion-header">
-                                <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#accordion002" aria-expanded="false" style="margin-left: -17px;">
+                                <button class="btn collapsed" type="button" data-toggle="collapse"
+                                    data-target="#accordion002" aria-expanded="false" style="margin-left: -17px;">
                                     Preview
                                 </button>
                             </div>
                             <div id="accordion002" class="accordion-body collapse" data-parent="#accordionExample3">
                                 <div class="accordion-content">
                                     <img src="{{ $data->foto ? asset('storage/image/foto_survei/' . $data->foto) : 'null' }}"
-                                    class="card-img-top" alt="image">
+                                        class="card-img-top" alt="image">
                                 </div>
                             </div>
                         </div>
@@ -101,6 +107,7 @@
 @endsection
 
 @push('myscript')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('assets/js/myscript/get_loc.js') }}"></script>
 @endpush
