@@ -51,7 +51,7 @@
 
                     <div class="form-group boxed" style="margin-top: -10px;">
                         <div class="input-wrapper">
-                            <textarea id="address5" rows="3" class="form-control">{{ $data->alamat_ktp }}</textarea>
+                            <textarea id="address5" rows="3" class="form-control" readonly>{{ $data->alamat_ktp }}</textarea>
                         </div>
                     </div>
 
@@ -62,6 +62,7 @@
                     </div>
 
                     <div class="custom-file-upload">
+                        <input type="text" name="oldphoto" value="{{ $data->foto }}" hidden>
                         <input type="file" id="fileuploadInput" name="foto" accept=".png, .jpg, .jpeg">
                         <label for="fileuploadInput">
                             <span>
@@ -84,7 +85,6 @@
                                 <div class="accordion-content">
                                     <img src="{{ $data->foto ? asset('storage/image/foto_survei/' . $data->foto) : 'null' }}"
                                     class="card-img-top" alt="image">
-                                    {{-- <img src="{{ asset('assets/img/sample/photo/wide4.jpg') }}" class="card-img-top" alt="image"> --}}
                                 </div>
                             </div>
                         </div>
