@@ -67,7 +67,31 @@
                             </div>
                         </div>
 
-                        <div class="accordion" id="survey_foto">
+                        <div class="section mt-1">
+                            <div class="section-title">Upload Foto</div>
+                            <div class="card">
+                                <div class="card-body">
+                
+                                    <form>
+                                        <div class="custom-file-upload" id="fileUpload1">
+                                            <input type="file" id="fileuploadInput" accept=".png, .jpg, .jpeg">
+                                            <label for="fileuploadInput">
+                                                <span>
+                                                    <strong>
+                                                        <ion-icon name="arrow-up-circle-outline" role="img" class="md hydrated" aria-label="arrow up circle outline"></ion-icon>
+                                                        <i>Upload a Photo</i>
+                                                    </strong>
+                                                </span>
+                                            </label>
+                                        </div>
+                
+                                    </form>
+                
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- <div class="accordion" id="survey_foto">
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -77,15 +101,11 @@
                                 </h2>
                                 <div id="foto_survey" class="accordion-collapse collapse mb-1"
                                     data-bs-parent="#survey_foto">
-
-                                    {{-- <img src="{{ asset('storage/image/foto_survei/' . $data->foto) }} ? null" alt="image"
-                                        class="imaged img-fluid"> --}}
                                     <img src="{{ $data->foto ? asset('storage/image/foto_survei/' . $data->foto) : 'null' }}"
                                         alt="image" class="imaged img-fluid">
-
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="custom-file-upload mt-1" id="fileUpload1">
                             <input type="text" name="foto_survei" value="" hidden>
