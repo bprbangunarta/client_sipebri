@@ -1,74 +1,152 @@
+
 <!-- App Sidebar -->
 <div class="modal fade panelbox panelbox-left" id="sidebarPanel" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body p-0">
+
                 <!-- profile box -->
-                <div class="profileBox pt-2 pb-2">
+                <div class="profileBox">
                     <div class="image-wrapper">
-                        <img src="theme/img/sample/avatar/avatar1.jpg" alt="image" class="imaged  w36">
+                        <img src="assets/img/sample/avatar/avatar1.jpg" alt="image" class="imaged rounded">
                     </div>
                     <div class="in">
-                        <strong>{{ Auth::user()->name }}</strong>
-                        <div class="text-muted">{{ Auth::user()->kantor_kode }} | {{ Auth::user()->code_user }} | {{ Auth::user()->kode_surveyor }}</div>
+                        <strong>Julian Gruber</strong>
+                        <div class="text-muted">
+                            <ion-icon name="location"></ion-icon>
+                            California
+                        </div>
                     </div>
-                    <a href="#" class="btn btn-link btn-icon sidebar-close" data-bs-dismiss="modal">
-                        <ion-icon name="close-outline"></ion-icon>
+                    <a href="javascript:;" class="close-sidebar-button" data-dismiss="modal">
+                        <ion-icon name="close"></ion-icon>
                     </a>
                 </div>
                 <!-- * profile box -->
 
-                <!-- menu -->
-                <div class="listview-title">Menu</div>
-                <ul class="listview flush transparent no-line image-listview">
+                <ul class="listview flush transparent no-line image-listview mt-2">
                     <li>
-                        <a href="/dashboard" class="item">
+                        <a href="index.html" class="item">
                             <div class="icon-box bg-primary">
                                 <ion-icon name="home-outline"></ion-icon>
                             </div>
                             <div class="in">
-                                Home
+                                Discover
                             </div>
                         </a>
                     </li>
-
                     <li>
-                        <a href="/survey" class="item">
+                        <a href="app-components.html" class="item">
                             <div class="icon-box bg-primary">
-                                <ion-icon name="pie-chart-outline"></ion-icon>
+                                <ion-icon name="cube-outline"></ion-icon>
                             </div>
                             <div class="in">
-                                Survey
+                                Components
                             </div>
                         </a>
                     </li>
-                    
                     <li>
-                        <a href="/settings" class="item">
+                        <a href="app-pages.html" class="item">
                             <div class="icon-box bg-primary">
-                                <ion-icon name="settings-outline"></ion-icon>
+                                <ion-icon name="layers-outline"></ion-icon>
                             </div>
                             <div class="in">
-                                Setting
+                                <div>Pages</div>
                             </div>
                         </a>
                     </li>
                     <li>
-                        <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                            <a href="#" class="item" onclick="event.preventDefault(); this.closest('form').submit();">
-                                <div class="icon-box bg-primary">
-                                    <ion-icon name="log-out-outline"></ion-icon>
+                        <a href="page-chat.html" class="item">
+                            <div class="icon-box bg-primary">
+                                <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+                            </div>
+                            <div class="in">
+                                <div>Chat</div>
+                                <span class="badge badge-danger">5</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <div class="item">
+                            <div class="icon-box bg-primary">
+                                <ion-icon name="moon-outline"></ion-icon>
+                            </div>
+                            <div class="in">
+                                <div>Dark Mode</div>
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input dark-mode-switch"
+                                        id="darkmodesidebar">
+                                    <label class="custom-control-label" for="darkmodesidebar"></label>
                                 </div>
-                                <div class="in">
-                                    Signout
-                                </div>
-                            </a>
-                        </form>
+                            </div>
+                        </div>
                     </li>
                 </ul>
-                <!-- * menu -->
+
+                <div class="listview-title mt-2 mb-1">
+                    <span>Friends</span>
+                </div>
+                <ul class="listview image-listview flush transparent no-line">
+                    <li>
+                        <a href="page-chat.html" class="item">
+                            <img src="assets/img/sample/avatar/avatar7.jpg" alt="image" class="image">
+                            <div class="in">
+                                <div>Sophie Asveld</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="page-chat.html" class="item">
+                            <img src="assets/img/sample/avatar/avatar3.jpg" alt="image" class="image">
+                            <div class="in">
+                                <div>Sebastian Bennett</div>
+                                <span class="badge badge-danger">6</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="page-chat.html" class="item">
+                            <img src="assets/img/sample/avatar/avatar10.jpg" alt="image" class="image">
+                            <div class="in">
+                                <div>Beth Murphy</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="page-chat.html" class="item">
+                            <img src="assets/img/sample/avatar/avatar2.jpg" alt="image" class="image">
+                            <div class="in">
+                                <div>Amelia Cabal</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="page-chat.html" class="item">
+                            <img src="assets/img/sample/avatar/avatar5.jpg" alt="image" class="image">
+                            <div class="in">
+                                <div>Henry Doe</div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+
             </div>
+
+            <!-- sidebar buttons -->
+            <div class="sidebar-buttons">
+                <a href="javascript:;" class="button">
+                    <ion-icon name="person-outline"></ion-icon>
+                </a>
+                <a href="javascript:;" class="button">
+                    <ion-icon name="archive-outline"></ion-icon>
+                </a>
+                <a href="javascript:;" class="button">
+                    <ion-icon name="settings-outline"></ion-icon>
+                </a>
+                <a href="javascript:;" class="button">
+                    <ion-icon name="log-out-outline"></ion-icon>
+                </a>
+            </div>
+            <!-- * sidebar buttons -->
         </div>
     </div>
 </div>

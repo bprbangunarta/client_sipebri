@@ -9,7 +9,7 @@
 
     <!-- loader -->
     <div id="loader">
-        <img src="https://presensi.bprbangunarta.co.id/mobile/img/logo-icon.png" alt="icon" class="loading-icon">
+        <div class="spinner-border text-primary" role="status"></div>
     </div>
     <!-- * loader -->
 

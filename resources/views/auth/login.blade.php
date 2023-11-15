@@ -2,18 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#000000">
-    <title>SIPEBRI</title>
-    <meta name="description" content="Sistem Informasi Pembertian Kredit adalah sebuah sistem informasi untuk mengelola dan memantau proses pemberian kredit kepada pelanggan atau nasabah.">
-    <link rel="icon" type="image/png" href="assets/img/favicon.png" sizes="32x32">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon.png">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="manifest" href="__manifest.json">
+    @include('theme.header')
 </head>
 
 <body class="bg-white">
@@ -43,9 +32,6 @@
                     <div class="form-group boxed">
                         <div class="input-wrapper">
                             <input type="text" class="form-control" name="username" value="{{ old('username') }}" placeholder="Username" required>
-                            <i class="clear-input">
-                                <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
-                            </i>
                             @error('username')
                                 <div class="invalid-feedback" style="text-align:left;">{{ $message }}</div>
                             @enderror
@@ -58,9 +44,6 @@
                     <div class="form-group boxed">
                         <div class="input-wrapper">
                             <input type="password" class="form-control" name="password" value="{{ old('password') }}" placeholder="Password" required>
-                            <i class="clear-input">
-                                <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
-                            </i>
                             @error('password')
                                 <div class="invalid-feedback" style="text-align:left;">{{ $message }}</div>
                             @enderror
@@ -79,24 +62,7 @@
     </div>
     <!-- * App Capsule -->
 
-
-
-    <!-- ///////////// Js Files ////////////////////  -->
-    <!-- Jquery -->
-    <script src="assets/js/lib/jquery-3.4.1.min.js"></script>
-    <!-- Bootstrap-->
-    <script src="assets/js/lib/popper.min.js"></script>
-    <script src="assets/js/lib/bootstrap.min.js"></script>
-    <!-- Ionicons -->
-    <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
-    <!-- Owl Carousel -->
-    <script src="assets/js/plugins/owl-carousel/owl.carousel.min.js"></script>
-    <!-- jQuery Circle Progress -->
-    <script src="assets/js/plugins/jquery-circle-progress/circle-progress.min.js"></script>
-    <!-- Base Js File -->
-    <script src="assets/js/base.js"></script>
-
-
+    @include('theme.footer')
 </body>
 
 </html>
