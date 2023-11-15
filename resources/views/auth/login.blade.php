@@ -8,9 +8,10 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#000000">
-    <title>Login | SIPEBRI</title>
+    <title>SIPEBRI</title>
     <meta name="description" content="Sistem Informasi Pembertian Kredit adalah sebuah sistem informasi untuk mengelola dan memantau proses pemberian kredit kepada pelanggan atau nasabah.">
     <link rel="icon" type="image/png" href="assets/img/favicon.png" sizes="32x32">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon.png">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="manifest" href="__manifest.json">
 </head>
@@ -27,43 +28,47 @@
     <!-- App Capsule -->
     <div id="appCapsule" class="pt-0">
 
-        <img src="assets/img/1.png" alt="image" style="width: 100%;border-radius: 0 0 30px 30px;">
         <div class="login-form mt-1">
             <div class="section">
+                <img src="https://simontok.bprbangunarta.co.id/assets/mobile/img/vactor/login.png" alt="image" class="form-image">
             </div>
-            <div class="section mt-2">
-                <h2 class="text-uppercase text-primary">Login Form</h2>
+            <div class="section mt-1">
+                <h1>Get started</h1>
+                <h4>Fill the form to log in</h4>
             </div>
             <div class="section mt-1 mb-5">
-                <form method="POST" action="{{ route('login') }}">
+                <form method="POST" action="{{ route('login') }}" class="@error('username') needs-validation was-validated @enderror @error('email') needs-validation was-validated @enderror @error('password') needs-validation was-validated @enderror">
                     @csrf
+
                     <div class="form-group boxed">
                         <div class="input-wrapper">
-                            <input type="text" class="form-control" name="username" value="{{ old('username') }}" placeholder="Username">
+                            <input type="text" class="form-control" name="username" value="{{ old('username') }}" placeholder="Username" required>
                             <i class="clear-input">
-                                <ion-icon name="close-circle"></ion-icon>
+                                <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
                             </i>
+                            @error('username')
+                                <div class="invalid-feedback" style="text-align:left;">{{ $message }}</div>
+                            @enderror
+                            @error('email')
+                                <div class="invalid-feedback" style="text-align:left;">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
 
                     <div class="form-group boxed">
                         <div class="input-wrapper">
-                            <input type="password" class="form-control" name="password" value="{{ old('password') }}" placeholder="Password">
+                            <input type="password" class="form-control" name="password" value="{{ old('password') }}" placeholder="Password" required>
                             <i class="clear-input">
-                                <ion-icon name="close-circle"></ion-icon>
+                                <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
                             </i>
+                            @error('password')
+                                <div class="invalid-feedback" style="text-align:left;">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
-
-                    {{-- <div class="form-links mt-2">
-                        <div>
-                            <a href="page-register.html">Register Now</a>
-                        </div>
-                        <div><a href="page-forgot-password.html" class="text-muted">Forgot Password?</a></div>
-                    </div> --}}
 
                     <div class="form-button-group">
-                        <button type="submit" class="btn btn-primary btn-block btn-lg">Login</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg">Log in</button>
                     </div>
 
                 </form>
@@ -74,13 +79,21 @@
     </div>
     <!-- * App Capsule -->
 
+
+
+    <!-- ///////////// Js Files ////////////////////  -->
     <!-- Jquery -->
     <script src="assets/js/lib/jquery-3.4.1.min.js"></script>
+    <!-- Bootstrap-->
     <script src="assets/js/lib/popper.min.js"></script>
     <script src="assets/js/lib/bootstrap.min.js"></script>
+    <!-- Ionicons -->
     <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
+    <!-- Owl Carousel -->
     <script src="assets/js/plugins/owl-carousel/owl.carousel.min.js"></script>
+    <!-- jQuery Circle Progress -->
     <script src="assets/js/plugins/jquery-circle-progress/circle-progress.min.js"></script>
+    <!-- Base Js File -->
     <script src="assets/js/base.js"></script>
 
 
