@@ -5,8 +5,8 @@
  <!-- App Header -->
  <div class="appHeader bg-primary text-light">
     <div class="left">
-        <a href="#" class="headerButton" data-bs-toggle="modal" data-bs-target="#sidebarPanel">
-            <ion-icon name="menu-outline"></ion-icon>
+        <a href="#" class="headerButton" data-toggle="modal" data-target="#sidebarPanel">
+            <ion-icon name="menu-outline" role="img" class="md hydrated" aria-label="menu outline"></ion-icon>
         </a>
     </div>
     <div class="pageTitle">SIPEBRI</div>
