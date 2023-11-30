@@ -54,12 +54,9 @@ class SurveyController extends Controller
             );
         //
         $c = $cek->get();
-        $count = count($c);
         $data = $cek->paginate(10);
-        for ($i = 0; $i < $count; $i++) {
-            if ($data->isNotEmpty()) {
-                $data[$i]->kd_pengajuan = Crypt::encrypt($data[$i]->kode_pengajuan);
-            }
+        foreach ($data as $item) {
+            $item->kd_pengajuan = Crypt::encrypt($item->kode_pengajuan);
         }
 
         return view('survey.index', [
@@ -72,7 +69,7 @@ class SurveyController extends Controller
         try {
             $enc = Crypt::decrypt($request->query('survei'));
             $survei = Midle::get_survei($enc);
-            // dd($survei);
+
             return view('survey.edit', [
                 'data' => $survei,
             ]);
