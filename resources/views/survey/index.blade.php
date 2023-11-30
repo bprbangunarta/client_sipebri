@@ -22,7 +22,8 @@
     <div id="search" class="appHeader">
         <form class="search-form" action="{{ route('survey.index') }}" method="GET">
             <div class="form-group searchbox">
-                <input type="text" class="form-control" name="name" id="name" value="{{ request('name') }}" placeholder="Search...">
+                <input type="text" class="form-control" name="name" id="name" value="{{ request('name') }}"
+                    placeholder="Search...">
                 <i class="input-icon">
                     <ion-icon name="search-outline"></ion-icon>
                 </i>
@@ -39,37 +40,37 @@
 
         <ul class="listview image-listview">
             @forelse ($data as $item)
-            <li>
-                <a href="{{ route('survey.edit', ['survei' => $item->kd_pengajuan]) }}" class="item">
-                    <div class="icon-box bg-primary">
-                        <ion-icon name="person-circle-outline" role="img" class="md hydrated"></ion-icon>
-                    </div>
-                    <div class="in">
-                        <div style="text-transform: uppercase;">
-                            {{ $item->nama_nasabah }}
-                            {{-- <footer>{{ $item->surveyor }}</footer> --}}
+                <li>
+                    <a href="{{ route('survey.edit', ['survei' => $item->kd_pengajuan]) }}" class="item">
+                        <div class="icon-box bg-primary">
+                            <ion-icon name="person-circle-outline" role="img" class="md hydrated"></ion-icon>
                         </div>
-                        @if ($item->foto == null)
-                            <span class="badge badge-danger badge-empty"></span>
-                        @else
-                            <span class="badge badge-success badge-empty"></span>
-                        @endif
-                    </div>
-                </a>
-            </li>
+                        <div class="in">
+                            <div style="text-transform: uppercase;">
+                                {{ $item->nama_nasabah }}
+                                {{-- <footer>{{ $item->surveyor }}</footer> --}}
+                            </div>
+                            @if ($item->foto == null)
+                                <span class="badge badge-danger badge-empty"></span>
+                            @else
+                                <span class="badge badge-success badge-empty"></span>
+                            @endif
+                        </div>
+                    </a>
+                </li>
             @empty
-            <li>
-                <a href="#" class="item">
-                    <div class="icon-box bg-primary">
-                        <ion-icon name="person-circle-outline" role="img" class="md hydrated"></ion-icon>
-                    </div>
-                    <div class="in">
-                        <div>
-                            TIDAK ADA DATA
+                <li>
+                    <a href="#" class="item">
+                        <div class="icon-box bg-primary">
+                            <ion-icon name="person-circle-outline" role="img" class="md hydrated"></ion-icon>
                         </div>
-                    </div>
-                </a>
-            </li>
+                        <div class="in">
+                            <div>
+                                TIDAK ADA DATA
+                            </div>
+                        </div>
+                    </a>
+                </li>
             @endforelse
         </ul>
 
