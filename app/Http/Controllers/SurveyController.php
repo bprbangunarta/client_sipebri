@@ -21,13 +21,9 @@ class SurveyController extends Controller
             ->Join('users', 'data_survei.surveyor_kode', '=', 'users.code_user')
             ->where(function ($query) use ($user) {
                 $query->where('data_survei.surveyor_kode', $user)
+                    ->where('data_pengajuan.on_current', '=', '0')
                     ->where(function ($subquery) {
-                        $subquery->where('data_pengajuan.tracking', 'Proses Survei')
-                            ->orWhere('data_pengajuan.tracking', 'Proses Analisa')
-                            ->orWhere('data_pengajuan.tracking', 'Persetujuan Komite')
-                            ->orWhere('data_pengajuan.tracking', 'Naik Kasi')
-                            ->orWhere('data_pengajuan.tracking', 'Naik Komite I')
-                            ->orWhere('data_pengajuan.tracking', 'Naik Komite II');
+                        $subquery->where('data_pengajuan.tracking', 'Proses Survei');
                     });
             })
             ->select(
@@ -54,7 +50,7 @@ class SurveyController extends Controller
             );
         //
         $c = $cek->get();
-        $data = $cek->paginate(15);
+        $data = $cek->paginate(10);
         foreach ($data as $item) {
             $item->kd_pengajuan = Crypt::encrypt($item->kode_pengajuan);
         }
