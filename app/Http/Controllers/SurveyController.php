@@ -50,7 +50,7 @@ class SurveyController extends Controller
             );
         //
         $c = $cek->get();
-        $data = $cek->paginate(10);
+        $data = $cek->paginate(30);
         foreach ($data as $item) {
             $item->kd_pengajuan = Crypt::encrypt($item->kode_pengajuan);
         }
