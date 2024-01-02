@@ -84,11 +84,9 @@ class SurveyController extends Controller
 
             $loc = null;
             if (is_null($loc)) {
-                $cek['latitude'] = null;
-                $cek['longitude'] = null;
+                return redirect()->back()->with('error', 'Lokasi Tidak Ditemukan');
             } elseif ($loc === "") {
-                $cek['latitude'] = null;
-                $cek['longitude'] = null;
+                return redirect()->back()->with('error', 'Lokasi Tidak Ditemukan');
             } elseif (!is_null($loc)) {
                 $arrloc = explode(",", $loc);
                 $cek['latitude'] = $arrloc[0];
