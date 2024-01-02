@@ -82,10 +82,18 @@ class SurveyController extends Controller
                 'foto' => 'image|mimes:jpeg,png,jpg|max:10240',
             ]);
 
-            // $loc = $request->location;
-            // $arrloc = explode(",", $loc);
-            // $cek['latitude'] = $arrloc[0];
-            // $cek['longitude'] = $arrloc[1];
+            $loc = null;
+            if (is_null($loc)) {
+                $cek['latitude'] = null;
+                $cek['longitude'] = null;
+            } elseif ($loc === "") {
+                $cek['latitude'] = null;
+                $cek['longitude'] = null;
+            } elseif (!is_null($loc)) {
+                $arrloc = explode(",", $loc);
+                $cek['latitude'] = $arrloc[0];
+                $cek['longitude'] = $arrloc[1];
+            }
 
             //Cek Photo
             if ($request->file('foto')) {
@@ -102,7 +110,7 @@ class SurveyController extends Controller
             $cek['updated_at'] = now();
             $dt['proses_survey'] = now();
             $datap['tracking'] = 'Proses Analisa';
-            // dd($cek);
+
             DB::transaction(function () use ($enc, $cek, $datap, $dt) {
                 DB::table('data_survei')->where('pengajuan_kode', $enc)->update($cek);
                 DB::table('data_pengajuan')->where('kode_pengajuan', $enc)->update($datap);

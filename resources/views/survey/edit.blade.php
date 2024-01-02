@@ -98,7 +98,11 @@
 
                     <button type="submit" id="bt" class="btn btn-primary btn-block mt-1">SIMPAN</button>
                 </form>
-
+                <div class="row mt-1">
+                    <div class="col">
+                        <div id="map" style="height: 200px;"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -109,5 +113,7 @@
 @push('myscript')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
     <script src="{{ asset('assets/js/myscript/get_loc.js') }}"></script>
 @endpush
