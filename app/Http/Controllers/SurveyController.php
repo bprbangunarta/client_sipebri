@@ -82,18 +82,16 @@ class SurveyController extends Controller
                 'foto' => 'image|mimes:jpeg,png,jpg|max:10240',
             ]);
 
-            // $loc = $request->location;
-            // if (is_null($loc)) {
-            //     return redirect()->back()->with('error', 'Lokasi Tidak Ditemukan');
-            // } elseif ($loc === "") {
-            //     return redirect()->back()->with('error', 'Lokasi Tidak Ditemukan');
-            // } elseif (!is_null($loc)) {
-            //     $arrloc = explode(",", $loc);
-            //     $cek['latitude'] = $arrloc[0];
-            //     $cek['longitude'] = $arrloc[1];
-            // }
-            $cek['latitude'] = null;
-            $cek['longitude'] = null;
+            $loc = $request->location;
+            if (is_null($loc)) {
+                return redirect()->back()->with('error', 'Lokasi Tidak Ditemukan');
+            } elseif ($loc === "") {
+                return redirect()->back()->with('error', 'Lokasi Tidak Ditemukan');
+            } elseif (!is_null($loc)) {
+                $arrloc = explode(",", $loc);
+                $cek['latitude'] = $arrloc[0];
+                $cek['longitude'] = $arrloc[1];
+            }
 
             //Cek Photo
             if ($request->file('foto')) {
