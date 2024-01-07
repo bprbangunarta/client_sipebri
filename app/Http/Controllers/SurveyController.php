@@ -82,19 +82,22 @@ class SurveyController extends Controller
                 'foto' => 'image|mimes:jpeg,png,jpg|max:10240',
             ]);
 
-            // $loc = $request->location;
-            // if (is_null($loc)) {
-            //     return redirect()->back()->with('error', 'Lokasi Tidak Ditemukan');
-            // } elseif ($loc === "") {
-            //     return redirect()->back()->with('error', 'Lokasi Tidak Ditemukan');
-            // } elseif (!is_null($loc)) {
-            //     $arrloc = explode(",", $loc);
-            //     $cek['latitude'] = $arrloc[0];
-            //     $cek['longitude'] = $arrloc[1];
-            // }
 
-            $cek['latitude'] = null;
-            $cek['longitude'] = null;
+            $loc = $request->location;
+            if (is_null($loc)) {
+                return redirect()->back()->with('error', 'Lokasi Tidak Ditemukan');
+            } elseif ($loc === "") {
+                return redirect()->back()->with('error', 'Lokasi Tidak Ditemukan');
+            } elseif ($loc === "Tidak ada Lokasi") {
+                return redirect()->back()->with('error', 'Lokasi Tidak Ditemukan');
+            } elseif (!is_null($loc)) {
+                $arrloc = explode(",", $loc);
+                $cek['latitude'] = $arrloc[0];
+                $cek['longitude'] = $arrloc[1];
+            }
+
+            // $cek['latitude'] = null;
+            // $cek['longitude'] = null;
 
             //Cek Photo
             if ($request->file('foto')) {
@@ -117,7 +120,7 @@ class SurveyController extends Controller
                 DB::table('data_pengajuan')->where('kode_pengajuan', $enc)->update($datap);
                 DB::table('data_tracking')->where('pengajuan_kode', $enc)->update($dt);
             });
-            return redirect()->back()->with('success', 'Data berhasil disimpan');
+            return redirect()->route('survey.index')->with('success', 'Data berhasil disimpan');
         } catch (DecryptException $e) {
             return abort(403, 'Permintaan anda di Tolak.');
         }
