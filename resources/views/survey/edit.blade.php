@@ -1,6 +1,23 @@
 @extends('theme.app')
 @section('title', 'SURVEY')
+<style>
+    .swal2-popup {
+        max-height: 300px !important;
+        max-width: 300px !important;
+    }
 
+    .swal2-icon {
+        font-size: 10px !important;
+    }
+
+    .swal2-text {
+        font-size: 12px !important;
+    }
+
+    .swal2-confirm {
+        background: #3aa9a9 !important;
+    }
+</style>
 @section('content')
     <!-- App Header -->
     <div class="appHeader bg-primary text-light">
@@ -40,8 +57,8 @@
         <div class="section full mb-2">
             <div class="wide-block pb-1 pt-2">
 
-                <form action="{{ route('survey.simpan', ['survei' => $data->kd_pengajuan]) }}" method="POST"
-                    enctype="multipart/form-data">
+                <form id="formsurvei" action="{{ route('survey.simpan', ['survei' => $data->kd_pengajuan]) }}"
+                    method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group boxed">
                         <div class="input-wrapper">
@@ -68,7 +85,7 @@
 
                     <div class="custom-file-upload">
                         <input type="text" name="oldphoto" value="{{ $data->foto }}" hidden>
-                        <input type="file" id="fileuploadInput" name="foto" accept=".png, .jpg, .jpeg">
+                        <input type="file" id="fileuploadInput" name="foto" accept=".png, .jpg, .jpeg" required>
                         <label for="fileuploadInput">
                             <span>
                                 <strong>
@@ -111,9 +128,31 @@
 @endsection
 
 @push('myscript')
-    {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
     <script src="{{ asset('assets/js/myscript/get_loc.js') }}"></script>
+    <script>
+        const errorMessage = '{{ Session::get('error') }}';
+        const successMessage = '{{ Session::get('success') }}';
+
+        if (errorMessage) {
+            Swal.fire({
+                text: 'Pastikan Lokasi Telah Diizinkan',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 3000,
+            });
+        } else if (successMessage) {
+            Swal.fire({
+                text: successMessage,
+                icon: 'success',
+                showConfirmButton: false
+            })
+            setTimeout(function() {
+                location.href = '/survey';
+            }, 2000);
+        }
+    </script>
 @endpush

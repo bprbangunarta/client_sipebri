@@ -11,18 +11,3 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/img/favicon.png') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="manifest" href="{{ asset('__manifest.json') }}">
-
-    <link rel="stylesheet" href="{{ asset('assets/css/inc/bootstrap/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('theme/assets/font-awesome/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('theme/assets/Ionicons/css/ionicons.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('theme/assets/bootstrap-daterangepicker/daterangepicker.cs') }}s">
-    <link rel="stylesheet"
-        href="{{ asset('theme/assets/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('theme/plugins/iCheck/all.css') }}">
-    <link rel="stylesheet"
-        href="{{ asset('theme/assets/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('theme/plugins/timepicker/bootstrap-timepicker.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('theme/assets/select2/dist/css/select2.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('theme/dist/css/AdminLTE.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('theme/dist/css/skins/_all-skins.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('theme/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">

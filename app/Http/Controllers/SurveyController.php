@@ -120,7 +120,7 @@ class SurveyController extends Controller
                 DB::table('data_pengajuan')->where('kode_pengajuan', $enc)->update($datap);
                 DB::table('data_tracking')->where('pengajuan_kode', $enc)->update($dt);
             });
-            return redirect()->route('survey.index')->with('success', 'Data berhasil disimpan');
+            return redirect()->back()->with('success', 'Data berhasil disimpan');
         } catch (DecryptException $e) {
             return abort(403, 'Permintaan anda di Tolak.');
         }

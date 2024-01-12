@@ -19,7 +19,12 @@ class DashboardController extends Controller
             ->where('data_pengajuan.status', 'Disetujui')
             ->where('data_survei.surveyor_kode', '=', $user)
             ->count();
-        
+
+        $permohonan = DB::table('data_survei')
+            ->join('data_pengajuan', 'data_pengajuan.kode_pengajuan', '=', 'data_survei.pengajuan_kode')
+            ->where('data_pengajuan.status', 'Disetujui')
+            ->where('data_survei.surveyor_kode', '=', $user)->get();
+
         $penolakan = DB::table('data_survei')
             ->join('data_pengajuan', 'data_pengajuan.kode_pengajuan', '=', 'data_survei.pengajuan_kode')
             ->where('data_pengajuan.status', 'Ditolak')
@@ -72,6 +77,17 @@ class DashboardController extends Controller
         $total = array_sum($tak);
         $realisasi = $query->paginate(100);
 
+        if (count($permohonan) != 0) {
+            $total_kredit = [];
+            foreach ($permohonan as $item) {
+                $total_kredit[] = $item->plafon;
+            }
+
+            $sum_total = array_sum($total_kredit);
+        } else {
+            $sum_total = 0;
+        }
+
         return view('dashboard', [
             'pengajuan' => $pengajuan,
             'disetujui' => $disetujui,
@@ -79,6 +95,7 @@ class DashboardController extends Controller
             'dibatalkan' => $pembatalan,
             'data' => $realisasi,
             'total' => $total,
+            'total_kredit' => $sum_total,
         ]);
     }
 }
