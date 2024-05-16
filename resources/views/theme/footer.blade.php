@@ -14,3 +14,4 @@
     <script src="{{ asset('assets/js/base.js') }}"></script>
     <!-- Base Leaflet Js File -->
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>

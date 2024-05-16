@@ -83,7 +83,7 @@
                         </div>
                     </div>
 
-                    <div class="custom-file-upload">
+                    {{-- <div class="custom-file-upload">
                         <input type="text" name="oldphoto" value="{{ $data->foto }}" hidden>
                         <input type="file" id="fileuploadInput" name="foto" accept=".png, .jpg, .jpeg" required>
                         <label for="fileuploadInput">
@@ -110,6 +110,13 @@
                                         class="card-img-top" alt="image">
                                 </div>
                             </div>
+                        </div>
+                    </div> --}}
+
+                    <div class="row mt-1" style="margin-top: 5px">
+                        <div class="col">
+                            <input type="hidden" name="photo" value="" id="photo" required>
+                            <div class="webcam-capture"></div>
                         </div>
                     </div>
 
@@ -154,5 +161,25 @@
                 location.href = '/survey';
             }, 2000);
         }
+
+        Webcam.set({
+            height: 480,
+            width: 480,
+            image_format: 'jpeg',
+            jpeg_quality: 80
+        });
+
+        Webcam.attach('.webcam-capture');
+
+        $('#bt').click(function(e) {
+            e.preventDefault();
+
+            Webcam.snap(function(uri) {
+                $('#photo').val(uri)
+                $('#formsurvei')[0].submit();
+            });
+
+
+        })
     </script>
 @endpush

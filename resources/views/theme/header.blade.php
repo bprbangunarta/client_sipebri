@@ -11,3 +11,14 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/img/favicon.png') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="manifest" href="{{ asset('__manifest.json') }}">
+    <style>
+        .webcam-capture,
+        .webcam-capture video {
+            display: inline-block;
+            width: 100% !important;
+            margin: auto;
+            height: auto !important;
+            border-radius: 5px;
+
+        }
+    </style>

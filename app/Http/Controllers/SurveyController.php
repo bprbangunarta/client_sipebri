@@ -82,6 +82,10 @@ class SurveyController extends Controller
                 'foto' => 'image|mimes:jpeg,png,jpg|max:10240',
             ]);
 
+            $base64Image = $request->photo;
+            if (strpos($base64Image, 'data:image') !== false) {
+                list(, $base64Image) = explode(',', $base64Image);
+            }
 
             $loc = $request->location;
             if (is_null($loc)) {
@@ -100,16 +104,26 @@ class SurveyController extends Controller
             // $cek['longitude'] = null;
 
             //Cek Photo
-            if ($request->file('foto')) {
-                if ($request->oldphoto) {
-                    Storage::delete('public/image/foto_survei/' . $request->oldphoto);
-                }
-                $files = $cek['foto']->getClientOriginalExtension();
-                $new = 'survei' . '_' . $request->no_identitas . '_' . $request->nama . '.' . $files;
-                $cek['foto'] = $request->file('foto')->storeAs('image/foto_survei', $new, 'public');
-                $cek['foto'] = $new;
+            // if ($request->file('foto')) {
+            //     if ($request->oldphoto) {
+            //         Storage::delete('public/image/foto_survei/' . $request->oldphoto);
+            //     }
+            //     $files = $cek['foto']->getClientOriginalExtension();
+            //     $new = 'survei' . '_' . $request->no_identitas . '_' . $request->nama . '.' . $files;
+            //     $cek['foto'] = $request->file('foto')->storeAs('image/foto_survei', $new, 'public');
+            //     $cek['foto'] = $new;
+            // } else {
+            //     $cek['foto'] = $request->oldphoto;
+            // }
+
+            if (!is_null($request->photo)) {
+                $imageData = base64_decode($base64Image);
+                $imageName = 'survei' . '_' . $request->no_identitas . '_' . $request->nama . '.jpg';
+                $path = 'image/foto_survei/' . $imageName;
+                Storage::disk('public')->put($path, $imageData);
+                $cek['foto'] = $imageName;
             } else {
-                $cek['foto'] = $request->oldphoto;
+                $cek['foto'] = null;
             }
             $cek['updated_at'] = now();
             $dt['proses_survey'] = now();
