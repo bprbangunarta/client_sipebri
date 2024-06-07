@@ -32,6 +32,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/survey', [SurveyController::class, 'index'])->name('survey.index');
     Route::get('/survey/edit', [SurveyController::class, 'edit'])->name('survey.edit');
     Route::post('/survey/simpan', [SurveyController::class, 'simpan'])->name('survey.simpan');
+    Route::get('/survey/rsc', [SurveyController::class, 'survey_rsc'])->name('survey.rsc');
+    Route::get('/survey/rsc/edit', [SurveyController::class, 'edit_rsc'])->name('survey.edit.rsc');
+    Route::post('/survey/rsc/simpan', [SurveyController::class, 'simpan_rsc'])->name('survey.simpan.rsc');
 
     Route::get('/tracking', [TrackingController::class, 'index'])->name('tracking.index');
     Route::get('/tracking/detail', [TrackingController::class, 'detail'])->name('tracking.detail');

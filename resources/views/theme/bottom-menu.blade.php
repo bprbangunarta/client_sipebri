@@ -14,13 +14,20 @@
         </div>
     </a>
 
+    <a href="{{ route('survey.rsc') }}" class="item {{ request()->is('survey', 'survey/edit') ? 'active' : '' }}">
+        <div class="col">
+            <ion-icon name="pie-chart-outline"></ion-icon>
+            <strong>Survey RSC</strong>
+        </div>
+    </a>
+
     <a href="/tracking" class="item {{ request()->is('tracking', 'tracking/detail') ? 'active' : '' }}">
         <div class="col">
             <ion-icon name="file-tray-full-outline"></ion-icon>
             <strong>Tracking</strong>
         </div>
     </a>
-    
+
     <a href="/setting" class="item {{ request()->is('setting') ? 'active' : '' }}">
         <div class="col">
             <ion-icon name="settings-outline"></ion-icon>
