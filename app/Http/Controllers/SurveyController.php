@@ -238,6 +238,7 @@ class SurveyController extends Controller
             if (!is_null($request->photo)) {
                 $imageData = base64_decode($base64Image);
                 $imageName = 'survei_rsc' . '_' . $request->no_identitas . '_' . $request->nama . '.jpg';
+
                 try {
 
                     $client = new Client();
@@ -260,6 +261,7 @@ class SurveyController extends Controller
                     $responseData = json_decode($response->getBody()->getContents(), true);
 
                     $cek['updated_at'] = now();
+                    $cek['foto'] = $enc_rsc . '_' . $request->nama . '.jpg';
                     $datap['status'] = 'Proses Analisa';
 
                     DB::transaction(function () use ($enc_rsc, $cek, $datap) {
