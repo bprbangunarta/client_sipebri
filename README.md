@@ -21,6 +21,25 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
+## Requirement
+
+Untuk memastikan aplikasi Laravel Anda berjalan dengan optimal dan mendukung fitur-fitur yang dibutuhkan, Anda memerlukan beberapa paket dependencies yang beragam. Berikut adalah deskripsi dari masing-masing paket yang diperlukan:
+
+-   **PHP**: Menggunakan versi PHP terbaru untuk memanfaatkan fitur terbaru dan peningkatan performa yang disediakan oleh PHP 8.2.
+-   **google/apiclient**: Digunakan untuk berinteraksi dengan berbagai layanan API Google, seperti Google Drive, Gmail, dan lainnya.
+-   **intervention/image**: Sebuah library manipulasi gambar yang mudah digunakan untuk memproses dan mengelola gambar dalam aplikasi.
+-   **guzzlehttp/guzzle**: Sebuah library HTTP client yang canggih untuk membuat permintaan HTTP ke API eksternal dengan mudah.
+-   **laravel/framework**: Kerangka kerja Laravel versi terbaru yang menyediakan berbagai fitur untuk pengembangan web yang efisien dan elegan.
+-   **laravel/pulse**: Sebuah paket tambahan untuk Laravel yang memungkinkan pelacakan metrik dan pemantauan performa aplikasi.
+-   **laravel/sanctum**: Digunakan untuk mengimplementasikan autentikasi token API yang sederhana dan aman untuk aplikasi Laravel.
+-   **laravel/tinker**: Sebuah konsol interaktif untuk berinteraksi dengan aplikasi Laravel menggunakan perintah artisan tinker.
+-   **maatwebsite/excel**: Digunakan untuk mengimpor dan mengekspor data dalam format Excel dengan mudah.
+-   **spatie/laravel-permission**: Mengelola izin dan peran pengguna dalam aplikasi Laravel dengan fleksibilitas yang tinggi.
+-   **riskihajar/terbilang**: Sebuah paket untuk mengkonversi angka menjadi kata-kata dalam bahasa Indonesia.
+-   **simplesoftwareio/simple-qrcode**: Sebuah library untuk menghasilkan QR Code secara mudah dalam aplikasi Laravel.
+
+Dengan mengintegrasikan semua paket ini, Anda dapat membangun aplikasi Laravel yang kaya fitur dan dapat diandalkan, memenuhi berbagai kebutuhan pengembangan yang kompleks.
+
 ## Learning Laravel
 
 Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
