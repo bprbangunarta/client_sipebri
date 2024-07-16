@@ -58,7 +58,7 @@
             <div class="wide-block pb-1 pt-2">
 
                 <form id="formsurvei"
-                    action="{{ route('survey.simpan.rsc', ['survei' => $data->kd_pengajuan, 'rsc' => $data->kd_rsc]) }}"
+                    action="{{ route('survey.simpan.rsc', ['survei' => $data->kd_pengajuan, 'rsc' => $data->kd_rsc, 'status_rsc' => $data->status_rsc]) }}"
                     method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group boxed">
@@ -83,36 +83,6 @@
                                 readonly>
                         </div>
                     </div>
-
-                    {{-- <div class="custom-file-upload">
-                        <input type="text" name="oldphoto" value="{{ $data->foto }}" hidden>
-                        <input type="file" id="fileuploadInput" name="foto" accept=".png, .jpg, .jpeg" required>
-                        <label for="fileuploadInput">
-                            <span>
-                                <strong>
-                                    <ion-icon name="cloud-upload-outline"></ion-icon>
-                                    <i>Tap to Upload</i>
-                                </strong>
-                            </span>
-                        </label>
-                    </div>
-
-                    <div class="accordion mt-1" id="accordionExample3">
-                        <div class="item">
-                            <div class="accordion-header">
-                                <button class="btn collapsed" type="button" data-toggle="collapse"
-                                    data-target="#accordion002" aria-expanded="false" style="margin-left: -17px;">
-                                    Preview
-                                </button>
-                            </div>
-                            <div id="accordion002" class="accordion-body collapse" data-parent="#accordionExample3">
-                                <div class="accordion-content">
-                                    <img src="{{ $data->foto ? asset('storage/image/foto_survei/' . $data->foto) : 'null' }}"
-                                        class="card-img-top" alt="image">
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
 
                     <div class="row mt-1" style="margin-top: 5px">
                         <div class="col">

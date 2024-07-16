@@ -146,16 +146,18 @@ class SurveyController extends Controller
     {
         $user = Auth::user()->code_user;
         $cek = DB::table('rsc_data_pengajuan')
-            ->Join('data_pengajuan', 'data_pengajuan.kode_pengajuan', '=', 'rsc_data_pengajuan.pengajuan_kode')
-            ->Join('data_nasabah', 'data_nasabah.kode_nasabah', '=', 'rsc_data_pengajuan.nasabah_kode')
-            ->Join('rsc_data_survei', 'rsc_data_pengajuan.kode_rsc', '=', 'rsc_data_survei.kode_rsc')
-            ->Join('v_users', 'rsc_data_survei.surveyor_kode', '=', 'v_users.code_user')
+            ->leftJoin('data_pengajuan', 'data_pengajuan.kode_pengajuan', '=', 'rsc_data_pengajuan.pengajuan_kode')
+            ->leftJoin('data_nasabah', 'data_nasabah.kode_nasabah', '=', 'rsc_data_pengajuan.nasabah_kode')
+            ->leftJoin('rsc_data_survei', 'rsc_data_pengajuan.kode_rsc', '=', 'rsc_data_survei.kode_rsc')
+            ->leftJoin('v_users', 'rsc_data_survei.surveyor_kode', '=', 'v_users.code_user')
             ->where(function ($query) use ($user) {
                 $query->where('rsc_data_survei.surveyor_kode', $user)
                     ->where('rsc_data_pengajuan.status', 'Proses Survei');
             })
             ->select(
                 'rsc_data_pengajuan.kode_rsc',
+                'rsc_data_pengajuan.pengajuan_kode',
+                'rsc_data_pengajuan.status_rsc',
                 'data_pengajuan.kode_pengajuan',
                 'data_pengajuan.tracking',
                 'data_pengajuan.status',
@@ -180,9 +182,41 @@ class SurveyController extends Controller
         //
         $c = $cek->get();
         $data = $cek->paginate(30);
+
+        //===Handle Data Eksternal===//
+        foreach ($data as $value) {
+            if (strpos($value->status_rsc, 'EKS') !== false) {
+                $data_eks = DB::connection('sqlsrv')->table('m_loan')
+                    ->join('m_cif', 'm_cif.nocif', '=', 'm_loan.nocif')
+                    ->join('setup_loan', 'setup_loan.kodeprd', '=', 'm_loan.kdprd')
+                    ->join('wilayah', 'wilayah.kodewil', '=', 'm_loan.kdwil')
+                    ->select(
+                        'm_loan.fnama',
+                        'm_loan.plafond_awal',
+                        'm_cif.alamat',
+                        'm_loan.jkwaktu',
+                        'setup_loan.ket',
+                        'wilayah.ket as wil',
+                    )
+                    ->where('noacc', $value->pengajuan_kode)->first();
+                //
+                if ($data_eks) {
+                    $value->nama_nasabah = trim($data_eks->fnama);
+                    $value->alamat_ktp = trim($data_eks->alamat);
+                    $value->plafon = trim($data_eks->plafond_awal);
+                } else {
+                    $value->nama_nasabah = null;
+                    $value->alamat_ktp = null;
+                    $value->plafon = null;
+                }
+            }
+        }
+        //===Handle Data Eksternal===//
+
         foreach ($data as $item) {
-            $item->kd_pengajuan = Crypt::encrypt($item->kode_pengajuan);
+            $item->kd_pengajuan = Crypt::encrypt($item->pengajuan_kode);
             $item->kd_rsc = Crypt::encrypt($item->kode_rsc);
+            $item->eks = $item->status_rsc;
         }
 
         return view('survey.rsc.index', [
@@ -193,11 +227,20 @@ class SurveyController extends Controller
     public function edit_rsc(Request $request)
     {
         try {
-            $enc = Crypt::decrypt($request->query('survei'));
-            $enc_rsc = Crypt::decrypt($request->query('rsc'));
+            $status_rsc = $request->query('status_rsc');
 
-            $survei = Midle::get_survei($enc);
-            $survei->kd_rsc = $request->query('rsc');
+            if ($status_rsc == 'EKS') {
+                $enc = Crypt::decrypt($request->query('survei'));
+                $enc_rsc = Crypt::decrypt($request->query('rsc'));
+                $survei = Midle::get_survei_eks($enc, $enc_rsc);
+                $survei->kd_rsc = $request->query('rsc');
+            } else {
+                $enc = Crypt::decrypt($request->query('survei'));
+                $enc_rsc = Crypt::decrypt($request->query('rsc'));
+
+                $survei = Midle::get_survei($enc);
+                $survei->kd_rsc = $request->query('rsc');
+            }
 
             return view('survey.rsc.edit', [
                 'data' => $survei,
@@ -235,28 +278,49 @@ class SurveyController extends Controller
                 $cek['longitude'] = $arrloc[1];
             }
 
+
             if (!is_null($request->photo)) {
                 $imageData = base64_decode($base64Image);
                 $imageName = 'survei_rsc' . '_' . $request->no_identitas . '_' . $request->nama . '.jpg';
 
                 try {
 
-                    $client = new Client();
-                    $endpoint = env('SIPEBRI_URL') . '/upload/survey';
+                    if ($request->query('status_rsc') == 'EKS') {
 
-                    $response = $client->post($endpoint, [
-                        'multipart' => [
-                            [
-                                'name'     => 'kode',
-                                'contents' => $enc_rsc,
+                        $client = new Client();
+                        $endpoint = env('SIPEBRI_URL') . '/upload/survey/eks';
+
+                        $response = $client->post($endpoint, [
+                            'multipart' => [
+                                [
+                                    'name'     => 'kode',
+                                    'contents' => $enc_rsc,
+                                ],
+                                [
+                                    'name'     => 'foto',
+                                    'contents' => $imageData,
+                                    'filename' => $imageName,
+                                ],
                             ],
-                            [
-                                'name'     => 'foto',
-                                'contents' => $imageData,
-                                'filename' => $imageName,
+                        ]);
+                    } else {
+                        $client = new Client();
+                        $endpoint = env('SIPEBRI_URL') . '/upload/survey';
+
+                        $response = $client->post($endpoint, [
+                            'multipart' => [
+                                [
+                                    'name'     => 'kode',
+                                    'contents' => $enc_rsc,
+                                ],
+                                [
+                                    'name'     => 'foto',
+                                    'contents' => $imageData,
+                                    'filename' => $imageName,
+                                ],
                             ],
-                        ],
-                    ]);
+                        ]);
+                    }
 
                     $responseData = json_decode($response->getBody()->getContents(), true);
 

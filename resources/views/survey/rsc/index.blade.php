@@ -41,7 +41,7 @@
         <ul class="listview image-listview">
             @forelse ($data as $item)
                 <li>
-                    <a href="{{ route('survey.edit.rsc', ['survei' => $item->kd_pengajuan, 'rsc' => $item->kd_rsc]) }}"
+                    <a href="{{ route('survey.edit.rsc', ['survei' => $item->kd_pengajuan, 'rsc' => $item->kd_rsc, 'status_rsc' => $item->status_rsc]) }}"
                         class="item">
                         <div class="icon-box bg-primary">
                             <ion-icon name="person-circle-outline" role="img" class="md hydrated"></ion-icon>
