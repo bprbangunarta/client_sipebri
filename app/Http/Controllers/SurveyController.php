@@ -268,15 +268,15 @@ class SurveyController extends Controller
             $loc = $request->location;
             if (is_null($loc)) {
                 return redirect()->back()->with('error', 'Lokasi Tidak Ditemukan');
-            } elseif ($loc === "") {
+            } elseif ($loc == "") {
                 return redirect()->back()->with('error', 'Lokasi Tidak Ditemukan');
-            } elseif ($loc === "Tidak ada Lokasi") {
+            } elseif ($loc == "Tidak ada Lokasi") {
                 return redirect()->back()->with('error', 'Lokasi Tidak Ditemukan');
-            } elseif (!is_null($loc)) {
-                $arrloc = explode(",", $loc);
-                $cek['latitude'] = $arrloc[0];
-                $cek['longitude'] = $arrloc[1];
             }
+
+            $arrloc = explode(",", $loc);
+            $cek['latitude'] = $arrloc[0];
+            $cek['longitude'] = $arrloc[1];
 
 
             if (!is_null($request->photo)) {
@@ -341,6 +341,6 @@ class SurveyController extends Controller
         } catch (DecryptException $e) {
             return abort(403, 'Permintaan anda di Tolak.');
         }
-        return redirect()->back()->with('success', 'Data gagal disimpan');
+        return redirect()->back()->with('error', 'Data gagal disimpan');
     }
 }
