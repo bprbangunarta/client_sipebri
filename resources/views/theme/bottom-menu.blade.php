@@ -14,7 +14,7 @@
         </div>
     </a>
 
-    <a href="{{ route('survey.rsc') }}" class="item {{ request()->is('survey', 'survey/edit') ? 'active' : '' }}">
+    <a href="{{ route('survey.rsc') }}" class="item {{ request()->is('survey/rsc') ? 'active' : '' }}">
         <div class="col">
             <ion-icon name="pie-chart-outline"></ion-icon>
             <strong>Survey RSC</strong>
