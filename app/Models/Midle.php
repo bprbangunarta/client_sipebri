@@ -14,9 +14,9 @@ class Midle extends Model
     public static function get_survei($data)
     {
         $cek = DB::table('data_pengajuan')
-            ->join('data_nasabah', 'data_pengajuan.nasabah_kode', '=', 'data_nasabah.kode_nasabah')
-            ->join('data_survei', 'data_pengajuan.kode_pengajuan', '=', 'data_survei.pengajuan_kode')
-            ->join('rsc_data_pengajuan', 'rsc_data_pengajuan.pengajuan_kode', '=', 'data_pengajuan.kode_pengajuan')
+            ->leftJoin('data_nasabah', 'data_pengajuan.nasabah_kode', '=', 'data_nasabah.kode_nasabah')
+            ->leftJoin('data_survei', 'data_pengajuan.kode_pengajuan', '=', 'data_survei.pengajuan_kode')
+            ->leftJoin('rsc_data_pengajuan', 'rsc_data_pengajuan.pengajuan_kode', '=', 'data_pengajuan.kode_pengajuan')
             ->where('data_pengajuan.kode_pengajuan', $data)
             ->select(
                 'data_pengajuan.*',
@@ -26,6 +26,7 @@ class Midle extends Model
             )->first();
 
         $cek->kd_pengajuan = Crypt::encrypt($cek->kode_pengajuan);
+
         return $cek;
     }
 
