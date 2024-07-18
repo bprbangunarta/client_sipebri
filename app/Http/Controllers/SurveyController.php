@@ -277,14 +277,14 @@ class SurveyController extends Controller
             $arrloc = explode(",", $loc);
             $cek['latitude'] = $arrloc[0];
             $cek['longitude'] = $arrloc[1];
-
+            return response()->json($loc);
 
             if (!is_null($request->photo)) {
                 $imageData = base64_decode($base64Image);
                 $imageName = 'survei_rsc' . '_' . $request->nama . '.jpg';
 
                 try {
-                    return response()->json($imageName);
+
                     if ($request->query('status_rsc') == 'EKS') {
 
                         $client = new Client();
