@@ -265,6 +265,7 @@ class SurveyController extends Controller
                 list(, $base64Image) = explode(',', $base64Image);
             }
 
+            return response()->json($request);
             $loc = $request->location;
             if (is_null($loc)) {
                 return redirect()->back()->with('error', 'Lokasi Tidak Ditemukan');
