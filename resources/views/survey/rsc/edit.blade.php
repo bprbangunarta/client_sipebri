@@ -112,6 +112,7 @@
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
         crossorigin="anonymous"></script>
+    <script src="{{ asset('assets/js/myscript/get_loc.js') }}"></script>
 
     <script>
         const errorMessage = '{{ Session::get('error') }}';
