@@ -116,7 +116,7 @@
     <script>
         const errorMessage = '{{ Session::get('error') }}';
         const successMessage = '{{ Session::get('success') }}';
-        console.log(successMessage)
+
         if (errorMessage) {
             Swal.fire({
                 text: 'Pastikan Lokasi Telah Diizinkan',
