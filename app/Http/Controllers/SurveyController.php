@@ -265,11 +265,10 @@ class SurveyController extends Controller
                 list(, $base64Image) = explode(',', $base64Image);
             }
 
-            return response()->json($request);
             $loc = $request->location;
             if (is_null($loc)) {
                 return redirect()->back()->with('error', 'Lokasi Tidak Ditemukan');
-            } elseif ($loc == "") {
+            } elseif ($loc == " ") {
                 return redirect()->back()->with('error', 'Lokasi Tidak Ditemukan');
             } elseif ($loc == "Tidak ada Lokasi") {
                 return redirect()->back()->with('error', 'Lokasi Tidak Ditemukan');
@@ -279,7 +278,7 @@ class SurveyController extends Controller
             $cek['latitude'] = $arrloc[0];
             $cek['longitude'] = $arrloc[1];
 
-
+            return response()->json($cek);
             if (!is_null($request->photo)) {
                 $imageData = base64_decode($base64Image);
                 $imageName = 'survei_rsc' . '_' . $request->nama . '.jpg';
