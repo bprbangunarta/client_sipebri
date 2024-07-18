@@ -252,7 +252,6 @@ class SurveyController extends Controller
 
     public function simpan_rsc(Request $request)
     {
-        return response()->json($request);
         try {
             $enc = Crypt::decrypt($request->query('survei'));
             $enc_rsc = Crypt::decrypt($request->query('rsc'));
@@ -285,7 +284,7 @@ class SurveyController extends Controller
                 $imageName = 'survei_rsc' . '_' . $request->nama . '.jpg';
 
                 try {
-
+                    return response()->json($imageName);
                     if ($request->query('status_rsc') == 'EKS') {
 
                         $client = new Client();
