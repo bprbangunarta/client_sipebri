@@ -252,6 +252,7 @@ class SurveyController extends Controller
 
     public function simpan_rsc(Request $request)
     {
+        return response()->json($request);
         try {
             $enc = Crypt::decrypt($request->query('survei'));
             $enc_rsc = Crypt::decrypt($request->query('rsc'));
