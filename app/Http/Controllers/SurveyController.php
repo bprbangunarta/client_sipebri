@@ -264,7 +264,7 @@ class SurveyController extends Controller
             if (strpos($base64Image, 'data:image') !== false) {
                 list(, $base64Image) = explode(',', $base64Image);
             }
-
+            return response()->json($request->location);
             $loc = $request->location;
             if (is_null($loc)) {
                 return redirect()->back()->with('error', 'Lokasi Tidak Ditemukan');
@@ -277,7 +277,7 @@ class SurveyController extends Controller
             $arrloc = explode(",", $loc);
             $cek['latitude'] = $arrloc[0];
             $cek['longitude'] = $arrloc[1];
-            return response()->json($loc);
+
 
             if (!is_null($request->photo)) {
                 $imageData = base64_decode($base64Image);
