@@ -110,11 +110,15 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+        crossorigin="anonymous"></script>
     <script src="{{ asset('assets/js/myscript/get_loc.js') }}"></script>
     <script>
         const errorMessage = '{{ Session::get('error') }}';
         const successMessage = '{{ Session::get('success') }}';
 
+        const responseData = @json(session('response_data'));
+        console.log(responseData)
         if (errorMessage) {
             Swal.fire({
                 text: 'Pastikan Lokasi Telah Diizinkan',
@@ -129,7 +133,7 @@
                 showConfirmButton: false
             })
             setTimeout(function() {
-                location.href = '/survey/rsc';
+                location.href = '/survey';
             }, 2000);
         }
 

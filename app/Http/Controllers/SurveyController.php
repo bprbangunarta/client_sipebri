@@ -281,7 +281,7 @@ class SurveyController extends Controller
 
             if (!is_null($request->photo)) {
                 $imageData = base64_decode($base64Image);
-                $imageName = 'survei_rsc' . '_' . $request->no_identitas . '_' . $request->nama . '.jpg';
+                $imageName = 'survei_rsc' . '_' . $request->nama . '.jpg';
 
                 try {
 
