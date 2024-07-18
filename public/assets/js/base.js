@@ -1,9 +1,15 @@
 ///////////////////////////////////////////////////////////////////////////
 // Service Workers
-// if ('serviceWorker' in navigator) {
-//     navigator.serviceWorker.register('service-worker.js')
-//         .then(reg => console.log('service worker registered'))
-//         .catch(err => console.log('service worker not registered - there is an error.', err));
+// if ("serviceWorker" in navigator) {
+//     navigator.serviceWorker
+//         .register("assets/js/service-worker.js")
+//         .then((reg) => console.log("service worker registered"))
+//         .catch((err) =>
+//             console.log(
+//                 "service worker not registered - there is an error.",
+//                 err
+//             )
+//         );
 // }
 ///////////////////////////////////////////////////////////////////////////
 
@@ -85,7 +91,7 @@ if (windowsPhoneDetection) {
 ///////////////////////////////////////////////////////////////////////////
 // Tooltip
 $(function () {
-    $('[data-toggle="tooltip"]').tooltip();
+    // $('[data-toggle="tooltip"]').tooltip();
 });
 ///////////////////////////////////////////////////////////////////////////
 

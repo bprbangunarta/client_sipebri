@@ -12,7 +12,6 @@ var REQUIRED_FILES = [
     "/",
     "https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap",
     "https://unpkg.com/ionicons@5.4.0/dist/ionicons.js",
-    "https://http://127.0.0.1:8002/survey/rsc/",
     "assets/js/lib/bootstrap.bundle.min.js",
     "assets/js/plugins/splide/splide.min.js",
     "assets/js/base.js",
