@@ -266,13 +266,13 @@ class SurveyController extends Controller
             }
 
             $loc = $request->location;
-            if (is_null($loc)) {
-                return redirect()->back()->with('error', 'Lokasi Tidak Ditemukan');
-            } elseif ($loc == " ") {
-                return redirect()->back()->with('error', 'Lokasi Tidak Ditemukan');
-            } elseif ($loc == "Tidak ada Lokasi") {
-                return redirect()->back()->with('error', 'Lokasi Tidak Ditemukan');
-            }
+            // if (is_null($loc)) {
+            //     return redirect()->back()->with('error', 'Lokasi Tidak Ditemukan');
+            // } elseif ($loc == " ") {
+            //     return redirect()->back()->with('error', 'Lokasi Tidak Ditemukan');
+            // } elseif ($loc == "Tidak ada Lokasi") {
+            //     return redirect()->back()->with('error', 'Lokasi Tidak Ditemukan');
+            // }
 
             $arrloc = explode(",", $loc);
             $cek['latitude'] = $arrloc[0];
