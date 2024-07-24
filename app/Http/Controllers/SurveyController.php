@@ -302,6 +302,7 @@ class SurveyController extends Controller
                                     'filename' => $imageName,
                                 ],
                             ],
+                            'verify' => false,
                         ]);
                     } else {
                         $client = new Client();
@@ -319,6 +320,7 @@ class SurveyController extends Controller
                                     'filename' => $imageName,
                                 ],
                             ],
+                            'verify' => false,
                         ]);
                     }
 
