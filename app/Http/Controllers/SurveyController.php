@@ -27,6 +27,7 @@ class SurveyController extends Controller
                         $subquery->where('data_pengajuan.tracking', 'Proses Survei');
                     });
             })
+            ->whereNot('data_pengajuan.status', ['Batal', 'Dibatalkan'])
             ->select(
                 'data_pengajuan.kode_pengajuan',
                 'data_pengajuan.tracking',
